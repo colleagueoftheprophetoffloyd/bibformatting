@@ -1,0 +1,21 @@
+1. Download articles tagged as "include" from the GENI-candidate citeulike group.
+From  http://www.citeulike.org/bibtex_options/group/17031/tag/include/order/author,,, set Key Type to "Prefer Numeric Keys," select Export to BibTeX and save file "group-include-17031.bib"
+
+2. Clear GENI public group and upload the articles just downloaded.
+Go to http://www.citeulike.org/group/17050/tag/no-tag
+Choose "delete all no-tag articles".
+Confirm.
+Check that there are now no articles.
+Go to http://www.citeulike.org/groupfunc/17050/import_go, and use these form settings:
+Under "Use a file on your hard drive," select group-include-17031.bib exported in last step
+Under "What tag?," clear the "tags" box and select "Don't import any tags"
+Under "What about duplicates," select "Update existing records for matching keys," "Matching: CiteULike article ID," and "replace existing tags with what's in the file"
+Verify that there are now an appropriate number of articles (about 350 as of May 2017).
+
+3. Process bibliography.
+sh ./crunch-bib.sh
+
+4. Upload results.
+Go to http://groups.geni.net/geni/wiki/GENIBibliography
+Upload new bibliography file (remember to check the box to replace current version)
+Insert newly formatted html from result-files/formatted-geni-bibliography.html in place of the old version.
