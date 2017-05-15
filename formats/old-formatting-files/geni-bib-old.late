@@ -1,0 +1,56 @@
+<!-- HTML to be inserted into wiki page. -->
+<!-- This page is auto-generated. Please do not edit by hand. -->
+
+<H1>GENI Bibliography</H1>
+
+<ol>
+
+%%GRP%%(inc:author)
+<a class="EntryGoto" id="%%name%%"></a>
+<b class="myheading" style="position: relative; left: 5\%;">%%name%%</b>
+%%FOR%%(inc:title)
+<div class="BibEntry">
+
+<table class="EntryTable" style="position: relative; left: 5\%; width: 90\%; border:thin solid black; border-spacing:10px;">
+
+<li>
+
+%%BIB%%(inc:author,title,journal,booktitle,location,publisher,address,year,abstract;)
+N = "
+<tr>
+     <td valign=\"top\">%%MOD_UB%%(%%name%%)</td>
+     <td valign=\"top\">%%content%%</td>
+</tr>
+"
+%%BIB%%
+
+%%BIB%%(inc:doi;)
+N = "
+<tr>
+     <td valign=\"top\">%%MOD_UC%%(%%name%%)</td>
+     <td valign=\"top\">%%content%%</td>
+</tr>
+"
+%%BIB%%
+
+%%BIB%%(inc:url;)
+N = "
+<tr>
+     <td valign=\"top\">URL</td>
+     <td valign=\"top\"><a href=\"%%content%%\">%%content%%</a></td>
+</tr>
+"
+%%BIB%%
+
+</li>
+
+</table></div><br><br>
+
+%%ROF%%
+
+%%PRG%%
+<br>
+
+</ol>
+
+<!-- End HTML to be inserted into wiki page. -->

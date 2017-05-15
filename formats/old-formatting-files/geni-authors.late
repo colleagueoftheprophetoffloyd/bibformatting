@@ -1,0 +1,7 @@
+%%GRP%%(inc:author)
+%%FOR%%(inc:author)
+%%BIB%%(inc:author;)
+N = "%%content%%"
+%%BIB%%
+%%ROF%%
+%%PRG%%
