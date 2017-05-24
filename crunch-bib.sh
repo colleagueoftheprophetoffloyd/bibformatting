@@ -23,7 +23,7 @@
 #----------------------------------------------------------------------
 
 # Set common variables
-. vars.sh
+. ./vars.sh
 
 # Results directory
 rm -r $RESULTS
@@ -43,13 +43,13 @@ grep "year =" $RESULTS/geni-bibliography.bib | sort | uniq -c | tee $RESULTS/GEN
 cat $RESULTS/geni-bibliography.bib | sed -e 's/~{}/~/g' -e 's/\"{/####/g' -e 's/"/\\"/g' | sed -e 's/####/\"{/g' > $TEMP/preprocessed-bibliography
 
 # Run preprocessed input file through bib2x to get a formatted listing of the publications, with full details.
-cat $TEMP/preprocessed-bibliography | bib2x -t $FORMATS/geni-bib-full.late > $TEMP/pubs-full.html
+cat $TEMP/preprocessed-bibliography | $BIB2X -t $FORMATS/geni-bib-full.late > $TEMP/pubs-full.html
 
 # Run preprocessed input file through bib2x to get a formatted listing of the publications, in concise format.
-cat $TEMP/preprocessed-bibliography | bib2x -t $FORMATS/geni-bib-concise.late > $TEMP/pubs-concise.html
+cat $TEMP/preprocessed-bibliography | $BIB2X -t $FORMATS/geni-bib-concise.late > $TEMP/pubs-concise.html
 
 # Run preprocessed input file through bib2x and additional post-processing to get a list of authors.
-cat $TEMP/preprocessed-bibliography | bib2x -t $FORMATS/geni-authors.late | grep -v '^$' | sed 's/ and /$/g' | tr $ '\n' | sort | uniq | python ./process-authors.py | awk '{print "<li>",$0,"</li>"}' > $TEMP/authors.html
+cat $TEMP/preprocessed-bibliography | $BIB2X -t $FORMATS/geni-authors.late | grep -v '^$' | sed 's/ and /$/g' | tr $ '\n' | sort | uniq | python ./process-authors.py | awk '{print "<li>",$0,"</li>"}' > $TEMP/authors.html
 
 cat \
     $FORMATS/geni-bib-header.html \

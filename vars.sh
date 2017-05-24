@@ -31,3 +31,6 @@ FORMATS=formats
 CITEBASE=http://www.citeulike.org/
 CITEGENICANDIDATE=$CITEBASE/bibtex/group/17031/tag/include/order/author,,
 CITEGENI=$CITEBASE/bibtex/group/17050/order/author,,
+
+# bib2x
+BIB2X=`which bib2x`

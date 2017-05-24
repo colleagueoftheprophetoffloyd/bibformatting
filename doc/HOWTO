@@ -19,6 +19,23 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS
 IN THE WORK.
 
+0. Install required tools. Here's an example of requred commands for a clean
+GENI ubuntu vm.
+
+# Get bibliography formatting code.
+git clone https://github.com/colleagueoftheprophetoffloyd/bibformatting.git bib
+
+# Set up python prerequisites.
+sudo apt-get install python-setuptools
+sudo easy_install unidecode
+
+# Get bib2x and add to path.
+curl -O http://www.xandi.eu/bib2x/files/dist/bib2x_0.9_linux_x86.tgz
+tar xf bib2x_0.9_linux_x86.tgz 
+mkdir -p ~/bin
+cp ~/bib2x-0.9.0/bib2x ~/bin
+
+
 1. Download articles tagged as "include" from the GENI-candidate citeulike group.
 From  http://www.citeulike.org/bibtex_options/group/17031/tag/include/order/author,,, set Key Type to "Prefer Numeric Keys," select Export to BibTeX and save file "group-include-17031.bib"
 
