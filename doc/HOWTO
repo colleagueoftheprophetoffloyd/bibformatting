@@ -30,11 +30,14 @@ sudo apt-get install python-setuptools
 sudo easy_install unidecode
 
 # Get bib2x and add to path.
-curl -O http://www.xandi.eu/bib2x/files/dist/bib2x_0.9_linux_x86.tgz
-tar xf bib2x_0.9_linux_x86.tgz 
-mkdir -p ~/bin
-cp ~/bib2x-0.9.0/bib2x ~/bin
-
+cd
+curl -O http://www.xandi.eu/bib2x/files/dist/bib2x_0.9.1_src.tgz
+tar xf bib2x_0.9.1_src.tgz 
+cd bib2x-0.9.1
+./configure
+make
+sudo make install
+sudo apt-get install libodb-dev
 
 1. Download articles tagged as "include" from the GENI-candidate citeulike group.
 From  http://www.citeulike.org/bibtex_options/group/17031/tag/include/order/author,,, set Key Type to "Prefer Numeric Keys," select Export to BibTeX and save file "group-include-17031.bib"
