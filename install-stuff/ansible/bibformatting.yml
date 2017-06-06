@@ -15,7 +15,6 @@
       apt: name={{item}} state=installed update_cache=yes
       with_items:
            - python-unidecode
-           - libodb-boost-dev
 
     - name: Get bib2x source
       get_url:
@@ -44,4 +43,10 @@
       become_method: sudo
       args:
         chdir: "{{ bib2x_srcdir }}"
+
+    - name: Update shared library config
+      command: ldconfig
+      become: true
+      become_user: root
+      become_method: sudo
 
