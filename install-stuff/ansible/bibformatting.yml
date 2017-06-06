@@ -1,0 +1,52 @@
+---
+- hosts: all
+  vars:
+    bib2x_distro_base: "http://www.xandi.eu/bib2x/files/dist"
+    bib2x_version: 0.9.1
+    bib2x_name: "bib2x_{{ bib2x_version }}"
+    bib2x_tarball_url: "{{ bib2x_distro_base }}/{{ bib2x_name }}_src.tgz"
+    bib2x_local_tarball: "{{ ansible_env.HOME }}/{{ bib2x_name }}_src.tgz"
+    bib2x_srcdir: "{{ ansible_env.HOME }}/bib2x-{{ bib2x_version }}"
+  tasks:
+    - name: Install needed packages.
+      become: true
+      become_user: root
+      become_method: sudo
+      apt: name={{item}} state=installed update_cache=yes
+      with_items:
+           - python-unidecode
+
+    - name: Get bib2x source
+      get_url:
+        url: "{{ bib2x_tarball_url }}"
+        dest: "{{ bib2x_local_tarball }}"
+
+    - name: Extract source files
+      unarchive:
+        src: "{{ bib2x_local_tarball }}"
+        dest: "{{ ansible_env.HOME }}"
+
+    - name: Configure source
+      command: ./configure
+      args:
+        chdir: "{{ bib2x_srcdir }}"
+
+    - name: Build bib2x
+      command: make
+      args:
+        chdir: "{{ bib2x_srcdir }}"
+
+    - name: Install bib2x
+      command: make install
+      become: true
+      become_user: root
+      become_method: sudo
+      args:
+        chdir: "{{ bib2x_srcdir }}"
+
+    - name: Update shared library config
+      command: ldconfig
+      become: true
+      become_user: root
+      become_method: sudo
+
