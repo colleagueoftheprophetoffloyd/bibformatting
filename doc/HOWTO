@@ -25,19 +25,12 @@ GENI ubuntu vm.
 # Get bibliography formatting code.
 git clone https://github.com/colleagueoftheprophetoffloyd/bibformatting.git bib
 
-# Set up python prerequisites.
-sudo apt-get install python-setuptools
-sudo easy_install unidecode
+# Install and update ansible.
+sudo apt-get -y install ansible
+ansible-playbook -i localhost, -c local bib/install-stuff/ansible/ansible.yml
 
-# Get bib2x and add to path.
-cd
-curl -O http://www.xandi.eu/bib2x/files/dist/bib2x_0.9.1_src.tgz
-tar xf bib2x_0.9.1_src.tgz 
-cd bib2x-0.9.1
-./configure
-make
-sudo make install
-sudo apt-get install libodb-dev
+# Install bibliography formatting tools.
+ansible-playbook -i localhost, -c local bib/install-stuff/ansible/bibformatting.yml
 
 1. Download articles tagged as "include" from the GENI-candidate citeulike group.
 From  http://www.citeulike.org/bibtex_options/group/17031/tag/include/order/author,,, set Key Type to "Prefer Numeric Keys," select Export to BibTeX and save file "group-include-17031.bib"
